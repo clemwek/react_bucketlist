@@ -25,6 +25,13 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.data.message,
                 authenticated: true,
             }
+        case 'LOGOUT_FULFILLED':
+            return {...state,
+                loading: false,
+                token: action.payload.data.token,
+                message: action.payload.data.message,
+                authenticated: false,
+            }
         case 'SHOW_LOGIN':
             return {...state,
                 login: true

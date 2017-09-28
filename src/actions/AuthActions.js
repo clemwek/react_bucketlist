@@ -8,6 +8,13 @@ export function login(data) {
     }
 }
 
+export function logout(data) {
+    return {
+        type: types.LOGOUT,
+        payload: instance.post('/auth/logout'),
+    }
+}
+
 export function showLogin () {
     return {
         type: types.SHOW_LOGIN,

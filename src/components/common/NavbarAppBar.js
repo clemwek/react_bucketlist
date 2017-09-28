@@ -12,6 +12,7 @@ class NavbarAppBar extends Component {
             button = 
             <FlatButton
                 label="Logout"
+                onClick={this.props.logout}
             />
         } else {
             button = 

@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import { Link, IndexLink } from 'react-router';
-import FlatButton from 'material-ui/FlatButton';
 
-import AppBar from 'material-ui/AppBar';
 import * as authActions from '../../actions/AuthActions'
 import NavbarAppBar from './NavbarAppBar';
 
@@ -25,11 +22,15 @@ class Navbar extends Component {
         this.props.actions.showRegister()
     }
 
+    logout = () => {
+        this.props.actions.logout()
+    }
 
     render() {
         return (
             <NavbarAppBar
                 login={this.showLogin}
+                logout={this.logout}
                 register={this.showRegister}
                 autheticated={this.props.auth.authenticated}
             />
