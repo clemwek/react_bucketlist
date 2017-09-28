@@ -83,6 +83,11 @@ class HomePage extends Component {
     }
 }
 
+HomePage.PropType = {
+    auth: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+};
+
 function mapStateToProps (state, ownProps) {
     return {
         auth: state.auth
