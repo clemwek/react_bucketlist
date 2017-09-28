@@ -5,28 +5,35 @@ import FlatButton from 'material-ui/FlatButton';
 
 import AppBar from 'material-ui/AppBar';
 
-const NavbarAppBar = ({login, register, autheticated}) => {
-    return (
-        <AppBar
-            showMenuIconButton={false}
-            title='Bucketlist'
-            iconElementRight={
-                <div>
-                    <FlatButton
-                        label="Login"
-                        onClick={login}
-                    />
-                    <FlatButton
-                        label="Register"
-                        onClick={register}
-                    />
-                    <FlatButton
-                        label="Logout"
-                    />
-                </div>
-            }
-        />
-    );
+class NavbarAppBar extends Component {
+    render() {
+        let button
+        if (this.props.autheticated) {
+            button = 
+            <FlatButton
+                label="Logout"
+            />
+        } else {
+            button = 
+            <div>
+                <FlatButton
+                    label="Login"
+                    onClick={this.props.login}
+                />
+                <FlatButton
+                    label="Register"
+                    onClick={this.props.register}
+                />
+            </div>
+        }
+        return (
+            <AppBar
+                showMenuIconButton={false}
+                title='Bucketlist'
+                iconElementRight={button}
+            />
+        );
+    }
 }
 
 NavbarAppBar.propType = {

@@ -2,15 +2,41 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import TextField from 'material-ui/TextField';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Redirect, browserHistory } from 'react-router';
+import {Card} from 'material-ui/Card';
 
 import * as authActions from '../../actions/AuthActions'
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import Buckelist from '../bucketist/BucketlistPage';
 
 
 class HomePage extends Component {
+    constructor (props, context) {
+        super(props, context);
+        this.state = {
+            auth: {},
+            errors: {}
+        };
+        this.updateAuthState = this.updateAuthState.bind(this);
+        this.login = this.login.bind(this)
+    }
+
+    updateAuthState(event) {
+        const field = event.target.name;
+        let auth = this.state.auth;
+        auth[field] = event.target.value;
+        return this.setState({auth: auth});
+    }
+
+    login(event) {
+        event.preventDefault();
+        this.props.actions.login(this.state.auth)
+        .then(() => {
+            browserHistory.push('/bucketlist')
+        })
+    }
+
     render() {
         const style = {
             height: 600,
@@ -19,64 +45,21 @@ class HomePage extends Component {
             textAlign: 'center',
             display: 'inline-block',
           };
+        let showForm
+        this.props.auth.login ?
+            showForm = <LoginForm
+                onChange={this.updateAuthState}
+                onSubmit={this.login}
+                errors={this.state.errors
+                }
+            />
+        
+        : showForm = <RegisterForm />
+        
         return (
             <div>
                 <Card style={style}>
-                    <CardHeader
-                        title="Login Here"
-                        actAsExpander={true}
-                    />
-                    <CardText>
-                    <TextField
-                        name="username"
-                        hintText="Username"
-                        floatingLabelText="Username"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <TextField
-                        name="password"
-                        hintText="password"
-                        floatingLabelText="password"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <CardActions>
-                        <FlatButton label="Login" />
-                    </CardActions>
-
-                    <TextField
-                        name="username"
-                        hintText="Username"
-                        floatingLabelText="Username"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <TextField
-                        name="email"
-                        hintText="email"
-                        floatingLabelText="email"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <TextField
-                        name="password"
-                        hintText="password"
-                        floatingLabelText="password"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <TextField
-                        name="date"
-                        hintText="date"
-                        floatingLabelText="date"
-                        floatingLabelFixed={true}
-                        fullWidth={true}
-                    /><br />
-                    <CardActions>
-                        <FlatButton label="Regster" />
-                    </CardActions>
-                    </CardText>
+                    {showForm}
                 </Card>
             </div>         
         );

@@ -31,7 +31,7 @@ class Navbar extends Component {
             <NavbarAppBar
                 login={this.showLogin}
                 register={this.showRegister}
-                user
+                autheticated={this.props.auth.authenticated}
             />
         );
     }
