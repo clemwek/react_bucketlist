@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import TextField from 'material-ui/TextField';
-
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+
+import * as authActions from '../../actions/AuthActions'
+
 
 class HomePage extends Component {
     render() {
@@ -78,4 +83,16 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+function mapStateToProps (state, ownProps) {
+    return {
+        auth: state.auth
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(authActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
