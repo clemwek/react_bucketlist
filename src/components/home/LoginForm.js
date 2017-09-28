@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const LoginForm = login => {
+const LoginForm = ({onSubmit, onChange }) => {
     return (
         <div>
             <CardHeader
@@ -16,19 +16,24 @@ const LoginForm = login => {
                 name="username"
                 hintText="Username"
                 floatingLabelText="Username"
-                floatingLabelFixed={true}
                 fullWidth={true}
+                onChange={onChange}
             /><br />
             <TextField
                 name="password"
                 hintText="password"
                 floatingLabelText="password"
-                floatingLabelFixed={true}
                 fullWidth={true}
+                onChange={onChange}
+                type="password"
             /><br />
             </CardText>
             <CardActions>
-                <FlatButton label="Login" />
+                <FlatButton
+                    label="Login"
+                    primary={true}
+                    onClick={onSubmit}
+                />
             </CardActions>
         </div>
     );
