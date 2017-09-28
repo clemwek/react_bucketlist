@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "i": "^0.3.5",
     "material-ui": "^0.19.2",
     "material-ui-search-bar": "^0.4.0",
@@ -15,6 +16,7 @@
     "react-scripts": "1.0.14",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.4.1"
   },
   "scripts": {
