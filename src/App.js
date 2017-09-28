@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './App.css';
+
+import Navbar from './components/common/Navbar';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Header will come here</h1>
-        {this.props.children}
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <Navbar />
+          {this.props.children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
