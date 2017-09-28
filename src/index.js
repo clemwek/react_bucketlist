@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 const store = configureStore();
 
 ReactDOM.render(
-    <Provider>
+    <Provider store={store}>
         <Router history={browserHistory} routes={routes}></Router>
     </Provider>,
     document.getElementById('root')
