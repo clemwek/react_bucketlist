@@ -9,10 +9,12 @@ import rootReducer from '../reducers';
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(promiseMiddleware(),
+    applyMiddleware(
+        promiseMiddleware(),
         reduxImmutableStateIvariant(),
         logger
-    )
+    ),
+    autoRehydrate()
 );
 
 persistStore(store)
