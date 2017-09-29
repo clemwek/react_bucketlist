@@ -20,18 +20,27 @@ class HomePage extends Component {
         };
         this.updateAuthState = this.updateAuthState.bind(this);
         this.login = this.login.bind(this)
+        this.register = this.register.bind(this)
     }
 
     updateAuthState(event) {
         const field = event.target.name;
         let auth = this.state.auth;
         auth[field] = event.target.value;
-        return this.setState({auth: auth});
+        this.setState({auth: auth});
     }
 
     login(event) {
         event.preventDefault();
         this.props.actions.login(this.state.auth)
+        .then(() => {
+            browserHistory.push('/bucketlist')
+        })
+    }
+    
+    register(event) {
+        event.preventDefault();
+        this.props.actions.register(this.state.auth)
         .then(() => {
             browserHistory.push('/bucketlist')
         })
@@ -54,7 +63,10 @@ class HomePage extends Component {
                 }
             />
         
-        : showForm = <RegisterForm />
+        : showForm = <RegisterForm
+            onChange={this.updateAuthState}
+            onSubmit={this.register}
+        />
         
         return (
             <div>

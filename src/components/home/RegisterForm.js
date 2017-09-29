@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const RegisterForm = register => {
+const RegisterForm = ({onChange, onSubmit}) => {
     return (
         <div>
             <CardHeader
@@ -15,33 +15,39 @@ const RegisterForm = register => {
             <TextField
                 name="username"
                 hintText="Username"
+                onChange={onChange}
                 floatingLabelText="Username"
-                floatingLabelFixed={true}
                 fullWidth={true}
             /><br />
             <TextField
                 name="email"
                 hintText="email"
+                onChange={onChange}
+                type="email"
                 floatingLabelText="email"
-                floatingLabelFixed={true}
                 fullWidth={true}
             /><br />
             <TextField
                 name="password"
                 hintText="password"
                 floatingLabelText="password"
-                floatingLabelFixed={true}
+                onChange={onChange}
+                type="password"
                 fullWidth={true}
             /><br />
             <TextField
-                name="date"
-                hintText="date"
-                floatingLabelText="date"
-                floatingLabelFixed={true}
+                name="password"
+                hintText="password"
+                floatingLabelText="password"
+                type="password"
+                onChange={onChange}
                 fullWidth={true}
             /><br />
             <CardActions>
-                <FlatButton label="Regster" />
+                <FlatButton
+                    label="Regster"
+                    onClick={onSubmit}
+                />
             </CardActions>
             </CardText>
         </div>
