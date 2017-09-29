@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Redirect, browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 
 import * as authActions from '../../actions/AuthActions'
@@ -24,6 +25,9 @@ class Navbar extends Component {
 
     logout = () => {
         this.props.actions.logout()
+        .then(() => {
+            browserHistory.push('/')
+        })
     }
 
     render() {
