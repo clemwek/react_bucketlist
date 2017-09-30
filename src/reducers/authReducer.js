@@ -10,41 +10,18 @@ const initialState = {
 
 export default function authReducer(state=initialState, action) {
     switch(action.type) {
-        case 'LOGIN_PENDING':
-            return {...state, loading: true};
-        case 'LOGIN_REJECTED':
+        case types.LOGIN_SUCCESS:
             return {...state,
                 loading: false,
-                message: 'action.payload.data.message',
-                error: true
-            }
-        case 'LOGIN_FULFILLED':
-            return {...state,
-                loading: false,
-                token: action.payload.data.token,
-                message: action.payload.data.message,
+                token: action.payload.token,
+                message: action.payload.message,
                 authenticated: true,
             }
-        case 'REGISTER_PENDING':
-            return {...state, loading: true};
-        case 'REGISTER_REJECTED':
+        case types.LOGOUT_SUCCESS:
             return {...state,
                 loading: false,
-                message: 'action.payload.data.message',
-                error: true
-            }
-        case 'REGISTER_FULFILLED':
-            return {...state,
-                loading: false,
-                token: action.payload.data.token,
-                message: action.payload.data.message,
-                authenticated: true,
-            }
-        case 'LOGOUT_FULFILLED':
-            return {...state,
-                loading: false,
-                token: action.payload.data.token,
-                message: action.payload.data.message,
+                token: action.payload.token,
+                message: action.payload.message,
                 authenticated: false,
             }
         case 'SHOW_LOGIN':

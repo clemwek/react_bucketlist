@@ -1,6 +1,6 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const REGISTER = 'REGISTER';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const SHOW_LOGIN = 'SHOW_LOGIN';
 export const SHOW_REGISTER = 'SHOW_REGISTER';
+export const GET_BUCKETLIST = 'GET_BUCKETLIST';

@@ -25,12 +25,11 @@ class Navbar extends Component {
 
     logout = () => {
         this.props.actions.logout()
-        .then(() => {
-            browserHistory.push('/')
-        })
+        this.context.router.push('/');
     }
 
     render() {
+        console.log(this.props.auth.authenticated)
         return (
             <NavbarAppBar
                 login={this.showLogin}
@@ -46,6 +45,10 @@ Navbar.PropType = {
     auth: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
+
+Navbar.contextTypes = {
+    router: PropTypes.object
+}
 
 function mapStateToProps (state, ownProps) {
     return {
