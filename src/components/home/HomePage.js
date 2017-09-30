@@ -33,17 +33,14 @@ class HomePage extends Component {
     login(event) {
         event.preventDefault();
         this.props.actions.login(this.state.auth)
-        .then(() => {
-            browserHistory.push('/bucketlist')
-        })
+        this.context.router.push('/bucketlist');
     }
     
     register(event) {
         event.preventDefault();
         this.props.actions.register(this.state.auth)
-        .then(() => {
-            browserHistory.push('/bucketlist')
-        })
+        this.context.router.push('/bucketlist');
+        
     }
 
     render() {
@@ -81,6 +78,10 @@ class HomePage extends Component {
 HomePage.PropType = {
     auth: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
+};
+
+HomePage.contextTypes = {
+    router: PropTypes.object
 };
 
 function mapStateToProps (state, ownProps) {
