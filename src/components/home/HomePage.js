@@ -33,13 +33,11 @@ class HomePage extends Component {
     login(event) {
         event.preventDefault();
         this.props.actions.login(this.state.auth)
-        this.context.router.push('/bucketlist');
     }
-    
+
     register(event) {
         event.preventDefault();
         this.props.actions.register(this.state.auth)
-        this.context.router.push('/bucketlist');
         
     }
 
@@ -51,6 +49,11 @@ class HomePage extends Component {
             textAlign: 'center',
             display: 'inline-block',
           };
+
+        this.props.auth.authenticated ? 
+            this.context.router.push('/bucketlist') :
+            null
+
         let showForm
         this.props.auth.login ?
             showForm = <LoginForm

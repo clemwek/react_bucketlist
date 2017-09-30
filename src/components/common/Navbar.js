@@ -25,10 +25,12 @@ class Navbar extends Component {
 
     logout = () => {
         this.props.actions.logout()
-        this.context.router.push('/');
     }
 
     render() {
+        this.props.auth.authenticated ? 
+            null :
+            this.context.router.push('/') 
         return (
             <NavbarAppBar
                 login={this.showLogin}
