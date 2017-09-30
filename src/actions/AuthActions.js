@@ -16,6 +16,18 @@ export function logoutSuccess(payload) {
     }
 }
 
+export function showLogin() {
+    return {
+        type: types.SHOW_LOGIN
+    }
+}
+
+export function showRegister() {
+    return {
+        type: types.SHOW_REGISTER
+    }
+}
+
 export function login(data) {
     return function (dispatch) {
         return instance

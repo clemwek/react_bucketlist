@@ -29,7 +29,6 @@ class Navbar extends Component {
     }
 
     render() {
-        console.log(this.props.auth.authenticated)
         return (
             <NavbarAppBar
                 login={this.showLogin}

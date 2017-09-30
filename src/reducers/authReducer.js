@@ -24,11 +24,11 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.message,
                 authenticated: false,
             }
-        case 'SHOW_LOGIN':
+        case types.SHOW_LOGIN:
             return {...state,
                 login: true
             }
-        case 'SHOW_REGISTER':
+        case types.SHOW_REGISTER:
             return {...state,
                 login: false
             }
