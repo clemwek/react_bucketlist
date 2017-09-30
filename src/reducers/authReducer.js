@@ -17,6 +17,7 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.message,
                 authenticated: true,
             }
+
         case types.REGISTER_SUCCESS:
             return {...state,
                 loading: false,
@@ -24,6 +25,7 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.message,
                 authenticated: true,
             }
+
         case types.LOGOUT_SUCCESS:
             return {...state,
                 loading: false,
@@ -31,10 +33,16 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.message,
                 authenticated: false,
             }
+            
+        case types.CHANGE_PASSWORD_SUCCESS:
+            return {...state
+            }
+
         case types.SHOW_LOGIN:
             return {...state,
                 login: true
             }
+
         case types.SHOW_REGISTER:
             return {...state,
                 login: false

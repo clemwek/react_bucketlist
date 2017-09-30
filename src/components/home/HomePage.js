@@ -16,11 +16,14 @@ class HomePage extends Component {
         super(props, context);
         this.state = {
             auth: {},
-            errors: {}
+            errors: {},
+            resetPassword: false
         };
         this.updateAuthState = this.updateAuthState.bind(this);
         this.login = this.login.bind(this)
         this.register = this.register.bind(this)
+        this.changePassword = this.changePassword.bind(this)
+        this.onSubmitChangePassword = this.onSubmitChangePassword.bind(this)
     }
 
     updateAuthState(event) {
@@ -33,6 +36,17 @@ class HomePage extends Component {
     login(event) {
         event.preventDefault();
         this.props.actions.login(this.state.auth)
+    }
+
+    changePassword() {
+        let newReset = !this.state.resetPassword
+        this.setState({resetPassword: newReset})
+    }
+
+    onSubmitChangePassword(event) {
+        event.preventDefault();
+        this.props.actions.changePassword(this.state.auth)
+        this.changePassword()
     }
 
     register(event) {
@@ -59,8 +73,10 @@ class HomePage extends Component {
             showForm = <LoginForm
                 onChange={this.updateAuthState}
                 onSubmit={this.login}
-                errors={this.state.errors
-                }
+                errors={this.state.errors}
+                reset={this.state.resetPassword}
+                changePassword={this.changePassword}
+                onSubmitChangePassword={this.onSubmitChangePassword}
             />
         
         : showForm = <RegisterForm

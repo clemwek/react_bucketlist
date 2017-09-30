@@ -16,6 +16,13 @@ export function registerSuccess(payload) {
     }
 }
 
+export function changePasswordSuccess(payload) {
+    return {
+        type: types.REGISTER_SUCCESS,
+        payload
+    }
+}
+
 export function logoutSuccess(payload) {
     return {
         type: types.LOGOUT_SUCCESS,
@@ -66,6 +73,19 @@ export function logout() {
         .post('/auth/logout')
         .then(resp => {
             dispatch(logoutSuccess(resp.data));
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+    }
+}
+
+export function changePassword(data) {
+    return function (dispatch) {
+        return instance
+        .post('/auth/reset-password', data)
+        .then(resp => {
+            dispatch(changePasswordSuccess(resp.data));
         })
         .catch(error => {
             console.log(error.response.data)
