@@ -9,6 +9,13 @@ export function loginSuccess(payload) {
     }
 }
 
+export function registerSuccess(payload) {
+    return {
+        type: types.REGISTER_SUCCESS,
+        payload
+    }
+}
+
 export function logoutSuccess(payload) {
     return {
         type: types.LOGOUT_SUCCESS,
@@ -34,6 +41,18 @@ export function login(data) {
         .post('/auth/login', data)
         .then(resp => {
             dispatch(loginSuccess(resp.data));
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+    }
+}
+export function register(data) {
+    return function (dispatch) {
+        return instance
+        .post('/auth/register', data)
+        .then(resp => {
+            dispatch(registerSuccess(resp.data));
         })
         .catch(error => {
             console.log(error.response.data)

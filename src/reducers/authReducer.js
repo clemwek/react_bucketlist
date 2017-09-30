@@ -17,6 +17,13 @@ export default function authReducer(state=initialState, action) {
                 message: action.payload.message,
                 authenticated: true,
             }
+        case types.REGISTER_SUCCESS:
+            return {...state,
+                loading: false,
+                token: action.payload.token,
+                message: action.payload.message,
+                authenticated: true,
+            }
         case types.LOGOUT_SUCCESS:
             return {...state,
                 loading: false,
