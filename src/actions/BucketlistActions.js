@@ -2,17 +2,24 @@ import * as types from './actionTypes';
 import instance from '../store/axiosConfig';
 import store from '../store/configureStore';
 
-export function getBucketlistSuccess(payload) {
+export function getBucketlistSuccess(bucketlist) {
     return {
         type: types.GET_BUCKETLIST_SUCCESS,
-        payload
+        bucketlist
     }
 }
 
-export function addBucketlistSuccess(payload) {
+export function addBucketlistSuccess(bucketlist) {
     return {
         type: types.ADD_BUCKETLIST_SUCCESS,
-        payload
+        bucketlist
+    }
+}
+
+export function addItemSuccess(bucketlist) {
+    return {
+        type: types.ADD_ITEM_SUCCESS,
+        bucketlist
     }
 }
 
@@ -35,6 +42,19 @@ export function addBucketlist(data) {
         .post('/bucketlists', data)
         .then(resp => {
             dispatch(addBucketlistSuccess(resp.data));
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+    }
+}
+
+export function addItems(data) {
+    return function (dispatch) {
+        return instance
+        .post(`/bucketlists/${data.id}/items`, data)
+        .then(resp => {
+            dispatch(addItemSuccess(resp.data));
         })
         .catch(error => {
             console.log(error.response.data)
