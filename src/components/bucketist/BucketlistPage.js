@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+// import {Container, Row, Col} from 'react-pure-grid';
 import FlatButton from 'material-ui/FlatButton';
 
 import * as bucketlistActions from '../../actions/BucketlistActions';
@@ -44,6 +46,14 @@ class Bucketlist extends Component {
         this.props.actions.getBucketlist()
     }
     render() {
+        let bucketlists = this.props.bucketlist.map(bucket => {
+            return (
+                <BucketlistCard
+                    bucket={bucket}
+                />
+            )
+        })
+
         const style = {
             root: {
               margin: 'auto',
@@ -51,10 +61,11 @@ class Bucketlist extends Component {
               height: 'auto',
               textAlign: 'center',
             },
-            card: {
-              margin: '10px',
-              width: '350px',
-              height: 'auto'
+            cardRow: {
+              display: 'flex',
+              flexDirection: 'row wrap',
+              padding: 20,
+              width: '100%'
             },
             imgHeader: {
               height: '50%',
@@ -72,7 +83,7 @@ class Bucketlist extends Component {
                     handleOpenAdd={this.handleOpenAdd}
                     onsubmit={this.addBucket}
                 />
-                <BucketlistCard style={style.card}/>
+                        {bucketlists}
             </div>
         );
     }
