@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const BucketlistCard = ({ bucket }) => {
+const BucketlistCard = ({ bucket, deleteBucket }) => {
     const style = {
         margin: '10px',
         width: '350px',
@@ -31,7 +31,10 @@ const BucketlistCard = ({ bucket }) => {
                         <FlatButton label="Add Item" />
                     </Link>
                     <FlatButton label="Edit" />
-                    <FlatButton label="Delete" />
+                    <FlatButton
+                        label="Delete"
+                        onClick={() => deleteBucket(bucket.id)}
+                    />
                 </CardActions>
                 <CardText>
                     <h3>This where the items will go</h3>

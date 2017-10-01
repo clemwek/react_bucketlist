@@ -24,6 +24,7 @@ class Bucketlist extends Component {
         this.updateBucketState = this.updateBucketState.bind(this)
         this.handleOpenAdd = this.handleOpenAdd.bind(this)
         this.addBucket = this.addBucket.bind(this)
+        this.deleteBucket = this.deleteBucket.bind(this)
     }
     updateBucketState(event) {
         const field = event.target.name;
@@ -35,6 +36,9 @@ class Bucketlist extends Component {
         event.preventDefault();
         this.props.actions.addBucketlist(this.state.bucket)
         this.handleCloseAdd()
+    }
+    deleteBucket(id) {
+        this.props.actions.deleteBucketlist(id)
     }
     handleCloseAdd() {
         this.setState({openAdd: false})
@@ -50,6 +54,7 @@ class Bucketlist extends Component {
             return (
                 <BucketlistCard
                     bucket={bucket}
+                    deleteBucket={this.deleteBucket}
                 />
             )
         })
