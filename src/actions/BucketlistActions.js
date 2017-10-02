@@ -23,6 +23,13 @@ export function editBucketlistSuccess(bucketlist) {
     }
 }
 
+export function editItemSuccess(bucketlist) {
+    return {
+        type: types.EDIT_BUCKETLIST_ITEMS_SUCCESS,
+        bucketlist
+    }
+}
+
 export function deleteBucketlistSuccess(bucketlist) {
     return {
         type: types.DELETE_BUCKETLIST_SUCCESS,
@@ -76,6 +83,19 @@ export function addItems(data) {
         .post(`/bucketlists/${data.id}/items`, data)
         .then(resp => {
             dispatch(addItemSuccess(resp.data));
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+    }
+}
+
+export function editItems(data) {
+    return function (dispatch) {
+        return instance
+        .put(`/bucketlists/${data.bucket_id}/items/${data.id}`, data)
+        .then(resp => {
+            dispatch(editItemSuccess(resp.data));
         })
         .catch(error => {
             console.log(error.response.data)

@@ -20,7 +20,7 @@ const BucketlistCard = ({ bucket, deleteBucket, deleteItem }) => {
                 <div>
                     <BucketlistItem
                         item={item}
-                        id={bucket.id}
+                        bucket_id={bucket.id}
                         deleteItem={deleteItem}
                     />
                 </div>

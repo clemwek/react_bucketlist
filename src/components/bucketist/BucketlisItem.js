@@ -7,7 +7,7 @@ import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import {red500, blue500 } from 'material-ui/styles/colors';
 import FontIcon from 'material-ui/FontIcon';
 
-const BucketlistItem = ({ item, deleteItem, editItem, id }) => {
+const BucketlistItem = ({ item, deleteItem, editItem, bucket_id }) => {
     const style = {
         margin: '10px',
         width: '350px',
@@ -19,8 +19,10 @@ const BucketlistItem = ({ item, deleteItem, editItem, id }) => {
                 leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
                 rightIcon={
                     <div>
-                        <FontIcon className="material-icons" >edit</FontIcon>
-                        <FontIcon className="material-icons" color={red500} onClick={() => deleteItem(id, item.id)}>delete</FontIcon>
+                        <Link to={`bucketlist/${bucket_id}/editItem/${item.id}`}>
+                            <FontIcon className="material-icons" >edit</FontIcon>
+                        </Link>
+                        <FontIcon className="material-icons" color={red500} onClick={() => deleteItem(bucket_id, item.id)}>delete</FontIcon>
                     </div>
                 }
                 primaryText={item.name}
