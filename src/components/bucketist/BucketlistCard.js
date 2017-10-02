@@ -5,7 +5,9 @@ import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const BucketlistCard = ({ bucket, deleteBucket }) => {
+import BucketlistItem from './BucketlisItem';
+
+const BucketlistCard = ({ bucket, deleteBucket, deleteItem }) => {
     const style = {
         margin: '10px',
         width: '350px',
@@ -15,7 +17,13 @@ const BucketlistCard = ({ bucket, deleteBucket }) => {
     if (bucket.items) {
         items = bucket.items.map(item => {
             return (
-                <h2>{item.name}</h2>
+                <div>
+                    <BucketlistItem
+                        item={item}
+                        id={bucket.id}
+                        deleteItem={deleteItem}
+                    />
+                </div>
             );
         });
     }
