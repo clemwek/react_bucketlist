@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-// import {Container, Row, Col} from 'react-pure-grid';
-import FlatButton from 'material-ui/FlatButton';
 
 import * as bucketlistActions from '../../actions/BucketlistActions';
 import SearchBarComponent from './SearchBar';
@@ -42,7 +37,6 @@ class Bucketlist extends Component {
         this.handleCloseAdd()
     }
     search(value) {
-        console.log('We are getting here', this.state.search)
         this.props.actions.searchBucketlist(this.state.search)
     }
     updateSearch(value) {
@@ -64,16 +58,6 @@ class Bucketlist extends Component {
         this.props.actions.getBucketlist()
     }
     render() {
-        let bucketlists = this.props.bucketlist.map(bucket => {
-            return (
-                <BucketlistCard
-                    bucket={bucket}
-                    deleteBucket={this.deleteBucket}
-                    deleteItem={this.deleteItem}
-                />
-            )
-        })
-
         const style = {
             root: {
               margin: 'auto',
@@ -85,14 +69,26 @@ class Bucketlist extends Component {
               display: 'flex',
               flexDirection: 'row wrap',
               flexWrap: 'wrap',
-              padding: 20,
+              padding: 10,
               width: '100%'
             },
-            imgHeader: {
-              height: '50%',
-              width: '100%'
+            cardHeader: {
+                fontSize: '20px',
+                fontWeight: 'bold'
             }
           }
+        let bucketlists 
+        bucketlists = this.props.bucketlist.map(bucket => {
+            return (
+                <BucketlistCard
+                    bucket={bucket}
+                    titleStyle={style.cardHeader}
+                    deleteBucket={this.deleteBucket}
+                    deleteItem={this.deleteItem}
+                />
+            )
+        })
+  
         return (
             <div style={style.root}>
                 <SearchBarComponent
@@ -114,7 +110,6 @@ class Bucketlist extends Component {
         );
     }
 }
-
 
 Bucketlist.PropType = {
     auth: PropTypes.array.isRequired,

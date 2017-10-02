@@ -9,16 +9,15 @@ import FontIcon from 'material-ui/FontIcon';
 
 const BucketlistItem = ({ item, deleteItem, editItem, bucket_id }) => {
     const style = {
-        margin: '10px',
-        width: '350px',
-        height: 'auto'
+        display: 'flex',
+        justifyContent: 'center'
     }
     return (
         <div>
             <ListItem
                 leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
                 rightIcon={
-                    <div>
+                    <div sytle={style}>
                         <Link to={`bucketlist/${bucket_id}/editItem/${item.id}`}>
                             <FontIcon className="material-icons" >edit</FontIcon>
                         </Link>
