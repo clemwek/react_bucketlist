@@ -18,6 +18,7 @@ class Bucketlist extends Component {
         super(props, ownProps);
         this.state = {
             bucket: {},
+            search: '',
             openAdd: false
         };
         this.handleCloseAdd = this.handleCloseAdd.bind(this)
@@ -26,6 +27,8 @@ class Bucketlist extends Component {
         this.addBucket = this.addBucket.bind(this)
         this.deleteBucket = this.deleteBucket.bind(this)
         this.deleteItem = this.deleteItem.bind(this)
+        this.search = this.search.bind(this)
+        this.updateSearch = this.updateSearch.bind(this)
     }
     updateBucketState(event) {
         const field = event.target.name;
@@ -37,6 +40,13 @@ class Bucketlist extends Component {
         event.preventDefault();
         this.props.actions.addBucketlist(this.state.bucket)
         this.handleCloseAdd()
+    }
+    search(value) {
+        console.log('We are getting here', this.state.search)
+        this.props.actions.searchBucketlist(this.state.search)
+    }
+    updateSearch(value) {
+        this.setState({search: value})
     }
     deleteBucket(id) {
         this.props.actions.deleteBucketlist(id)
@@ -85,7 +95,10 @@ class Bucketlist extends Component {
           }
         return (
             <div style={style.root}>
-                <SearchBarComponent />
+                <SearchBarComponent
+                    onChange={this.updateSearch}
+                    onSubmitSearch={this.search}
+                />
                 <br />
                 <AddBucketlist
                     openAdd={this.state.openAdd}

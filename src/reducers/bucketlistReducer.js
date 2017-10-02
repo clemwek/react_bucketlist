@@ -24,11 +24,10 @@ export default function bucketlistReducer(state=[], action) {
         case types.DELETE_BUCKETLIST_SUCCESS:
             return state.filter(bucketlist => bucketlist.id !== action.bucketlist.id)
         case types.DELETE_BUCKETLIST_ITEM_SUCCESS:
-            return state.map(bucket => bucket.id === action.bucketlist.bucket_id ?
-                {...bucket, items: action.bucketlist} : bucket
-            )
-            // return state.filter(bucketlist => bucketlist.items.id !== action.bucketlist.id)
-            
+            return [...state['items'].filter(bucketlist => bucketlist.id !== action.bucketlist.id),
+            ]
+        case types.SEARCH_BUCKETLIST_SUCCESS:
+            return action.bucketlist.bucketlist
         default:
             return state;
     }

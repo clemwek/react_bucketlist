@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from 'material-ui-search-bar';
 
-const SearchBarComponent = ({ onSubmit }) => {
+const SearchBarComponent = ({ onSubmitSearch, onChange }) => {
     return (
         <div>
             <SearchBar
-                onChange={() => console.log('onChange')}
-                onRequestSearch={() => console.log('onRequestSearch')}
+                onChange={(value) => onChange(value)}
+                onRequestSearch={() => onSubmitSearch()}
                 style={{
                 margin: '0 auto',
                 maxWidth: 800

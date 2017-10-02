@@ -37,6 +37,13 @@ export function deleteBucketlistSuccess(bucketlist) {
     }
 }
 
+export function searchBucketlistSuccess(bucketlist) {
+    return {
+        type: types.SEARCH_BUCKETLIST_SUCCESS,
+        bucketlist
+    }
+}
+
 export function deleteBucketlistItemuccess(bucketlist) {
     return {
         type: types.DELETE_BUCKETLIST_ITEM_SUCCESS,
@@ -135,6 +142,19 @@ export function deleteBucketlistItem(id, item_id) {
         .delete(`/bucketlists/${id}/items/${item_id}`)
         .then(resp => {
             dispatch(deleteBucketlistItemuccess(resp.data));
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+    }
+}
+
+export function searchBucketlist(data) {
+    return function (dispatch) {
+        return instance
+        .get(`/bucketlists?q=${data}`)
+        .then(resp => {
+            dispatch(searchBucketlistSuccess(resp.data));
         })
         .catch(error => {
             console.log(error.response.data)
