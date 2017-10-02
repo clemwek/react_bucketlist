@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {CardActions, CardHeader, CardText} from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 
-const RegisterForm = ({onChange, onSubmit}) => {
+const RegisterForm = ({onChange,
+    onSubmit,
+    titleStyle
+}) => {
     return (
         <div>
             <CardHeader
-                title="Register Here"
+                title="REGISTER"
+                titleStyle={titleStyle}
                 actAsExpander={true}
             />
             <CardText>
@@ -44,9 +48,10 @@ const RegisterForm = ({onChange, onSubmit}) => {
                 fullWidth={true}
             /><br />
             <CardActions>
-                <FlatButton
-                    label="Regster"
+                <RaisedButton
+                    label="Register"
                     onClick={onSubmit}
+                    primary="true"
                 />
             </CardActions>
             </CardText>

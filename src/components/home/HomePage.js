@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import { Redirect, browserHistory } from 'react-router';
 import {Card} from 'material-ui/Card';
 
 import * as authActions from '../../actions/AuthActions'
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import Buckelist from '../bucketist/BucketlistPage';
 
 
 class HomePage extends Component {
@@ -52,17 +50,29 @@ class HomePage extends Component {
     register(event) {
         event.preventDefault();
         this.props.actions.register(this.state.auth)
-        
     }
 
     render() {
         const style = {
-            height: 600,
+            height: 'auto',
             width: 500,
             margin: 10,
             textAlign: 'center',
             display: 'inline-block',
           };
+        const titleStyle = {
+            fontSize: '30px',
+            fontWeight: 'bold',
+            textAlign: 'center'
+        }
+        const row = {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        }
+        const pgHeight = {
+            height: '100%'
+        }
 
         this.props.auth.authenticated ? 
             this.context.router.push('/bucketlist') :
@@ -77,18 +87,22 @@ class HomePage extends Component {
                 reset={this.state.resetPassword}
                 changePassword={this.changePassword}
                 onSubmitChangePassword={this.onSubmitChangePassword}
+                titleStyle={titleStyle}
             />
-        
-        : showForm = <RegisterForm
+        : 
+        showForm = <RegisterForm
             onChange={this.updateAuthState}
             onSubmit={this.register}
+                titleStyle={titleStyle}
         />
         
         return (
-            <div>
-                <Card style={style}>
-                    {showForm}
-                </Card>
+            <div style={pgHeight}>
+                <div style={row}>
+                    <Card style={style}>
+                        {showForm}
+                    </Card>
+                </div>
             </div>         
         );
     }
