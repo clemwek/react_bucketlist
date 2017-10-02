@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Redirect, browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
+import LinearProgress from 'material-ui/LinearProgress';
 
 import * as authActions from '../../actions/AuthActions'
 import NavbarAppBar from './NavbarAppBar';
+import LoadingDots from './LoadingDots';
 
 
 class Navbar extends Component {
@@ -32,12 +33,16 @@ class Navbar extends Component {
             null :
             this.context.router.push('/') 
         return (
-            <NavbarAppBar
-                login={this.showLogin}
-                logout={this.logout}
-                register={this.showRegister}
-                autheticated={this.props.auth.authenticated}
-            />
+            <div>
+                <NavbarAppBar
+                    login={this.showLogin}
+                    logout={this.logout}
+                    register={this.showRegister}
+                    autheticated={this.props.auth.authenticated}
+                />
+                <LinearProgress mode="indeterminate" color={"pink"} />
+                <br />
+            </div>
         );
     }
 }

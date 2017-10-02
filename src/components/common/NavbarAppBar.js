@@ -30,7 +30,8 @@ class NavbarAppBar extends Component {
         return (
             <AppBar
                 showMenuIconButton={false}
-                title='Bucketlist'
+                title='BUCKETLIST'
+                zDepth={1}
                 iconElementRight={button}
             />
         );
