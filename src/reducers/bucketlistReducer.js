@@ -9,6 +9,10 @@ export default function bucketlistReducer(state=[], action) {
             return [...state,
                 Object.assign({}, action.bucketlist)
             ]
+        case types.EDIT_BUCKETLIST_SUCCESS:
+            return [...state.filter(bucketlist => bucketlist.id !== action.bucketlist.id),
+                Object.assign({}, action.bucketlist)
+            ]
         case types.ADD_ITEM_SUCCESS:
             return state.map(bucket => bucket.id === action.bucketlist.bucket_id ?
                 {...bucket, items: action.bucketlist} : bucket
@@ -20,7 +24,7 @@ export default function bucketlistReducer(state=[], action) {
                 {...bucket, items: action.bucketlist} : bucket
             )
             // return state.filter(bucketlist => bucketlist.items.id !== action.bucketlist.id)
-
+            
         default:
             return state;
     }

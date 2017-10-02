@@ -38,7 +38,9 @@ const BucketlistCard = ({ bucket, deleteBucket, deleteItem }) => {
                     <Link to={`bucketlist/addItem/${bucket.id}`}>
                         <FlatButton label="Add Item" />
                     </Link>
-                    <FlatButton label="Edit" />
+                    <Link to={`bucketlist/${bucket.id}`}>
+                        <FlatButton label="Edit" />
+                    </Link>
                     <FlatButton
                         label="Delete"
                         onClick={() => deleteBucket(bucket.id)}
