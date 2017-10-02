@@ -74,6 +74,7 @@ class Bucketlist extends Component {
             cardRow: {
               display: 'flex',
               flexDirection: 'row wrap',
+              flexWrap: 'wrap',
               padding: 20,
               width: '100%'
             },
@@ -93,7 +94,9 @@ class Bucketlist extends Component {
                     handleOpenAdd={this.handleOpenAdd}
                     onsubmit={this.addBucket}
                 />
+                <div style={style.cardRow}>
                         {bucketlists}
+                </div>
             </div>
         );
     }
