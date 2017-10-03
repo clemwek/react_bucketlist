@@ -1,7 +1,8 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
 
-export default function bucketlistReducer(state=[], action) {
+export default function bucketlistReducer(state=initialState.bucketlist, action) {
     switch(action.type) {
         case types.GET_BUCKETLIST_SUCCESS:
             return action.bucketlist.bucketlist
@@ -24,9 +25,8 @@ export default function bucketlistReducer(state=[], action) {
         case types.DELETE_BUCKETLIST_SUCCESS:
             return state.filter(bucketlist => bucketlist.id !== action.bucketlist.id)
         case types.DELETE_BUCKETLIST_ITEM_SUCCESS:
-            return [...state['items'].filter(bucketlist => bucketlist.id !== action.bucketlist.id),
-            ]
-        case types.SEARCH_BUCKETLIST_SUCCESS:
+            return [...state['items'].filter(bucketlist => bucketlist.id !== action.bucketlist.id)]
+
             return action.bucketlist.bucketlist
         default:
             return state;

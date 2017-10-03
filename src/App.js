@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './App.css';
@@ -10,7 +11,9 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <Navbar />
+          <Navbar
+            loading={this.props.loading}
+          />
           {this.props.children}
         </div>
       </MuiThemeProvider>
@@ -22,4 +25,10 @@ App.propTypes = {
   children: PropTypes.object.isRequired
 }
 
-export default App;
+function mapStatusToProps(state, ownProps) {
+  return {
+    loading: state.ajaxStatusReducer > 0
+  };
+}
+
+export default connect(mapStatusToProps)(App);

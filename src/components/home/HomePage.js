@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {Card} from 'material-ui/Card';
+import toastr from 'toastr';
 
 import * as authActions from '../../actions/AuthActions'
 import LoginForm from './LoginForm';
@@ -50,6 +51,7 @@ class HomePage extends Component {
     register(event) {
         event.preventDefault();
         this.props.actions.register(this.state.auth)
+        .then(() => toastr.success('You are now registered.'))
     }
 
     render() {

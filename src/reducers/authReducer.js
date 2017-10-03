@@ -1,14 +1,8 @@
 import * as types from '../actions/actionTypes';
-const initialState = {
-    authenticated: false,
-    loading: false,
-    login: true,
-    error: false,
-    message: '',
-    token: null
-}
+import initialState from './initialState';
 
-export default function authReducer(state=initialState, action) {
+
+export default function authReducer(state=initialState.auth, action) {
     switch(action.type) {
         case types.LOGIN_SUCCESS:
             return {...state,

@@ -1,5 +1,7 @@
 import * as types from './actionTypes';
 import instance from '../store/axiosConfig';
+import {beginAjaxCall, ajaxCallError} from './AjaxStatusActions';
+import toastr from 'toastr';
 
 
 export function loginSuccess(payload) {
@@ -44,37 +46,46 @@ export function showRegister() {
 
 export function login(data) {
     return function (dispatch) {
+        dispatch(beginAjaxCall());
         return instance
         .post('/auth/login', data)
         .then(resp => {
             dispatch(loginSuccess(resp.data));
         })
+        .then(() => toastr.success('You are loged in'))
         .catch(error => {
-            console.log(error.response.data)
+            dispatch(ajaxCallError(error));
+            toastr.error(error.response.data.error)
         })
     }
 }
 export function register(data) {
     return function (dispatch) {
+        dispatch(beginAjaxCall());
         return instance
         .post('/auth/register', data)
         .then(resp => {
             dispatch(registerSuccess(resp.data));
         })
+        .then(() => toastr.success('You are registered'))
         .catch(error => {
-            console.log(error.response.data)
+            dispatch(ajaxCallError(error));
+            toastr.error(error.response.data.error)
         })
     }
 }
 
 export function logout() {
     return function (dispatch) {
+        dispatch(beginAjaxCall());
         return instance
         .post('/auth/logout')
         .then(resp => {
             dispatch(logoutSuccess(resp.data));
         })
+        .then(() => toastr.success('You are loged out'))
         .catch(error => {
+            dispatch(ajaxCallError(error));
             console.log(error.response.data)
         })
     }
@@ -82,13 +93,16 @@ export function logout() {
 
 export function changePassword(data) {
     return function (dispatch) {
+        dispatch(beginAjaxCall());
         return instance
         .post('/auth/reset-password', data)
         .then(resp => {
             dispatch(changePasswordSuccess(resp.data));
+            toastr.success(resp.data.message)
         })
         .catch(error => {
-            console.log(error.response.data)
+            dispatch(ajaxCallError(error));
+            toastr.error(error.response.data.error)
         })
     }
 }

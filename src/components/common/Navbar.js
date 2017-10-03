@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
+import toastr from 'toastr';
 
 import * as authActions from '../../actions/AuthActions'
 import NavbarAppBar from './NavbarAppBar';
-import LoadingDots from './LoadingDots';
 
 
 class Navbar extends Component {
@@ -40,7 +40,7 @@ class Navbar extends Component {
                     register={this.showRegister}
                     autheticated={this.props.auth.authenticated}
                 />
-                <LinearProgress mode="indeterminate" color={"pink"} />
+                {this.props.loading && <LinearProgress mode="indeterminate" color={"pink"} />}
                 <br />
             </div>
         );
