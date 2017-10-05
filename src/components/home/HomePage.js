@@ -10,7 +10,7 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
 
-class HomePage extends Component {
+export class HomePage extends Component {
     constructor (props, context) {
         super(props, context);
         this.state = {
@@ -51,7 +51,6 @@ class HomePage extends Component {
     register(event) {
         event.preventDefault();
         this.props.actions.register(this.state.auth)
-        .then(() => toastr.success('You are now registered.'))
     }
 
     render() {
