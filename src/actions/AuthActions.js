@@ -20,7 +20,7 @@ export function registerSuccess(payload) {
 
 export function changePasswordSuccess(payload) {
     return {
-        type: types.REGISTER_SUCCESS,
+        type: types.CHANGE_PASSWORD_SUCCESS,
         payload
     }
 }

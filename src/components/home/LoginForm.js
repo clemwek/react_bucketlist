@@ -5,7 +5,7 @@ import {CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const LoginForm = ({onSubmit,
+export const LoginForm = ({onSubmit,
     onChange,
     reset,
     changePassword,
@@ -99,12 +99,12 @@ const LoginForm = ({onSubmit,
 }
 
 LoginForm.propType = {
-    login: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    reset: PropTypes.bool.isRequired,
-    changePassword: PropTypes.bool.isRequired,
-    onSubmitChangePassword: PropTypes.func.isRequired,
-    titleStyle: PropTypes.object.isRequired
+  login: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  reset: PropTypes.bool.isRequired,
+  changePassword: PropTypes.bool.isRequired,
+  onSubmitChangePassword: PropTypes.func.isRequired,
+  titleStyle: PropTypes.object.isRequired,
 };
 
 export default LoginForm;

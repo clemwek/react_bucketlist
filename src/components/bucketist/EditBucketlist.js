@@ -11,7 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import * as bucketlistActions from '../../actions/BucketlistActions'
 
-class EditBucketlist extends Component {
+export class EditBucketlist extends Component {
     constructor(props, ownProps) {
         super(props, ownProps);
         this.state = {
@@ -31,6 +31,7 @@ class EditBucketlist extends Component {
         let bucketlist = this.state.bucketlist
         bucketlist.id = this.props.params.id
         this.props.actions.editBucketlist(bucketlist)
+        .then(this.props.actions.getBucketlist());
         this.context.router.push('/bucketlist')
     }
     render(){

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
+import { Card, CardText } from 'material-ui/Card';
 
 import * as bucketlistActions from '../../actions/BucketlistActions';
 import SearchBarComponent from './SearchBar';
 import BucketlistCard from './BucketlistCard';
 import AddBucketlist from './AddBucketlist';
 
-class Bucketlist extends Component {
+export class Bucketlist extends Component {
     constructor(props, ownProps) {
         super(props, ownProps);
         this.state = {
@@ -47,6 +48,7 @@ class Bucketlist extends Component {
     }
     deleteItem(id, item_id) {
         this.props.actions.deleteBucketlistItem(id, item_id)
+        .then(this.props.actions.getBucketlist());
     }
     handleCloseAdd() {
         this.setState({openAdd: false})
@@ -78,6 +80,7 @@ class Bucketlist extends Component {
             }
           }
         let bucketlists 
+        if (this.props.bucketlist.length > 0) {
         bucketlists = this.props.bucketlist.map(bucket => {
             return (
                 <BucketlistCard
@@ -88,6 +91,13 @@ class Bucketlist extends Component {
                 />
             )
         })
+    } else {
+        bucketlists = <Card>
+            <CardText>
+                <h4>You have no bucketlists yet, please click on the button with a plus to add bucketlist.</h4>
+            </CardText>
+        </Card>
+    }
   
         return (
             <div style={style.root}>

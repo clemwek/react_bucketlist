@@ -11,7 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import * as bucketlistActions from '../../actions/BucketlistActions'
 
-class EditItem extends Component {
+export class EditItem extends Component {
     constructor(props, ownProps) {
         super(props, ownProps);
         this.state = {
@@ -38,20 +38,44 @@ class EditItem extends Component {
         data.date = formatedDate
         data.bucket_id = this.props.params.bucket_id
         this.props.actions.editItems(data)
+        .then(this.props.actions.getBucketlist());
         this.context.router.push('/bucketlist')
     }
     render(){
+        const style = {
+            height: 'auto',
+            width: 700,
+            margin: 10,
+            textAlign: 'center',
+            display: 'inline-block',
+          };
+        const titleStyle = {
+            fontSize: '30px',
+            fontWeight: 'bold',
+            textAlign: 'center'
+        }
+        const row = {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        }
+        const pgHeight = {
+            height: '100%'
+        }
         return (
-            <div>
-                <Card>
+            <div style={pgHeight}>
+                <div style={row}>
+                <Card style={style}>
                     <CardHeader
-                        title="Reset your password"
+                        title="Edit Item"
                         actAsExpander={true}
+                    titleStyle={titleStyle}
                     />
                     <CardText>
                     <TextField
                     name="name"
                     hintText="Item name"
+                    fullWidth={true}
                     floatingLabelText="Item name"
                     onChange={this.onChange}
                 /><br />
@@ -60,10 +84,12 @@ class EditItem extends Component {
                     name="description"
                     hintText="Item description"
                     floatingLabelText="Item description"
+                    fullWidth={true}
                     onChange={this.onChange}
                 /><br />
                 <br />
                 <DatePicker hintText="Choose A date" container="inline"
+                    titleStyle={titleStyle}
                     onChange={(e, date) => {
                     this.setState({date: date})
                     }}
@@ -83,6 +109,7 @@ class EditItem extends Component {
                         </Link>
                     </CardActions>
                 </Card>
+            </div>
             </div>
         );
     }
