@@ -27,7 +27,7 @@ export function editBucketlistSuccess(bucketlist) {
 
 export function editItemSuccess(bucketlist) {
     return {
-        type: types.EDIT_BUCKETLIST_ITEMS_SUCCESS,
+        type: types.EDIT_BUCKETLIST_ITEM_SUCCESS,
         bucketlist
     }
 }
@@ -69,7 +69,6 @@ export function getBucketlist() {
             dispatch(getBucketlistSuccess(resp.data));
         })
         .catch(error => {
-            toastr.error(error.response.data.error)
             dispatch(ajaxCallError(error));
             console.log(error.response.data)
         })
