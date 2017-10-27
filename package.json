@@ -28,7 +28,8 @@
     "redux-persist": "^4.10.1",
     "redux-promise-middleware": "^4.4.1",
     "redux-thunk": "^2.2.0",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "redux-immutable-state-invariant": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
