@@ -11,6 +11,7 @@
     "material-ui-search-bar": "^0.4.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "react-dom": "^16.0.0",
     "react-inline-grid": "^0.5.3",
     "react-pure-grid": "^2.1.1",

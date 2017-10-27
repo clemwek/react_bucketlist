@@ -5,7 +5,7 @@ import initialState from './initialState';
 export default function authReducer(state=initialState.auth, action) {
     switch(action.type) {
         case types.LOGIN_SUCCESS:
-            return {...state,
+            return { ...state,
                 loading: false,
                 token: action.payload.token,
                 message: action.payload.message,
@@ -13,7 +13,7 @@ export default function authReducer(state=initialState.auth, action) {
             }
 
         case types.REGISTER_SUCCESS:
-            return {...state,
+            return { ...state,
                 loading: false,
                 token: action.payload.token,
                 message: action.payload.message,
@@ -21,7 +21,7 @@ export default function authReducer(state=initialState.auth, action) {
             }
 
         case types.LOGOUT_SUCCESS:
-            return {...state,
+            return { ...state,
                 loading: false,
                 token: action.payload.token,
                 message: action.payload.message,
@@ -29,16 +29,16 @@ export default function authReducer(state=initialState.auth, action) {
             }
             
         case types.CHANGE_PASSWORD_SUCCESS:
-            return {...state
+            return { ...state,
             }
 
         case types.SHOW_LOGIN:
-            return {...state,
+            return { ...state,
                 login: true
             }
 
         case types.SHOW_REGISTER:
-            return {...state,
+            return { ...state,
                 login: false
             }
 
