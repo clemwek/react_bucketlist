@@ -1,5 +1,7 @@
 # BUCKETLIST_API FRONT-END
 
+Try out the live app [here](https://bucketlistreactfront.herokuapp.com/)
+
 
 ### Installation
 Clone the project<br>
